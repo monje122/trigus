@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Trigu's Bakery | ¡Date un gusto! - Menú Digital & Delivery</title>
+  <meta name="description" content="Menú oficial de Trigu's Bakery. Hamburguesas gourmet, carnes al grill, pizzas, pollo asado, desayunos y malteadas con delivery directo por WhatsApp." />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/img/trigus-logo.jpg" />
+
+  <!-- Google Fonts: Montserrat & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Top Info Notice -->
+  <div class="top-notice-bar">
+    <div class="top-notice-inner container">
+      <div class="top-notice-left">
+        <span class="pulse-dot"></span>
+        <span>🛵 <strong>DELIVERY ACTIVO</strong> • Pedidos directo a WhatsApp</span>
+      </div>
+      <div class="bcv-rate-badge" id="headerBcvBadge" title="Tasa Oficial del Banco Central de Venezuela">
+        <span class="bcv-icon">🏛️</span>
+        <span class="bcv-title">Tasa BCV del Día:</span>
+        <strong id="headerBcvRateValue">45.20 Bs.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-wrapper">
+        <img src="assets/img/trigus-logo.jpg" alt="Trigu's Bakery Logo" class="brand-logo-img" />
+        <div class="brand-text">
+          <h1 id="brandNameTitle">Trigu's <span>Bakery</span></h1>
+          <p id="brandSloganText">¡Date un gusto!</p>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <!-- Theme Toggle (Dark / Light) -->
+        <button id="btnThemeToggle" class="btn-theme-toggle" title="Cambiar a Modo Claro / Oscuro" onclick="toggleTheme()">
+          <span id="themeToggleIcon">☀️</span>
+        </button>
+
+        <!-- Admin Panel Toggle -->
+        <button id="btnAdminToggle" class="btn-admin-gear" title="Panel de Administración (Clave: 1234)">
+          ⚙️
+        </button>
+
+        <!-- Cart Header Button -->
+        <button class="btn-cart-header" onclick="openCartDrawer()">
+          <span>🛒</span>
+          <span class="cart-header-text">Pedido</span>
+          <span id="headerCartCount" class="cart-count-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Hero Horizontal Slider (Auto-playing Food Carousel) -->
+    <section id="heroSliderSection" class="hero-slider-section">
+      <div class="slider-container">
+        <!-- Slider Track Wrapper -->
+        <div id="sliderWrapper" class="slider-wrapper">
+          <!-- Slides injected via js/app.js -->
+        </div>
+
+        <!-- Arrows -->
+        <button class="slider-arrow prev" onclick="prevSlide()" aria-label="Anterior">❮</button>
+        <button class="slider-arrow next" onclick="nextSlide()" aria-label="Siguiente">❯</button>
+
+        <!-- Dots Indicator -->
+        <div id="sliderDots" class="slider-dots"></div>
+      </div>
+    </section>
+
+    <!-- Services & Info Cards -->
+    <section class="service-badges-row">
+      <div class="service-card">
+        <div class="service-icon">🛵</div>
+        <div class="service-info">
+          <h4>Delivery Express</h4>
+          <p>Envíos directos y seguros a tu casa o trabajo</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛍️</div>
+        <div class="service-info">
+          <h4>Para Llevar / Pick-up</h4>
+          <p>Pide con anticipación y retira sin esperas</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💳</div>
+        <div class="service-info">
+          <h4>Múltiples Pagos</h4>
+          <p>Pago Móvil, Efectivo $, Zelle o Punto</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <div class="service-info">
+          <h4>WhatsApp Directo</h4>
+          <p>Atención personalizada al +58 412-3714136</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Sticky Navigation & Search -->
+    <section id="menu-section" class="menu-controls-wrapper">
+      <!-- Live Search Box -->
+      <div class="search-box-row">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="menuSearchInput" class="search-input" placeholder="Buscar hamburguesas, pizzas, cortes de carne, bebidas..." />
+          <button id="searchClearBtn" class="search-clear-btn" title="Limpiar búsqueda">✕</button>
+        </div>
+      </div>
+
+      <!-- Categories Pills Scroll -->
+      <div id="categoriesScrollContainer" class="categories-scroll-container">
+        <!-- Injected via js/app.js -->
+      </div>
+    </section>
+
+    <!-- Products Grid Section -->
+    <section>
+      <div class="section-header-row">
+        <h2 id="activeCategoryTitle" class="section-title">✨ Todos los Platos</h2>
+        <span id="visibleProductsCount" class="section-badge-counter">Cargando menú...</span>
+      </div>
+
+      <div id="productsGrid" class="products-grid">
+        <!-- Cards injected dynamically via js/app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile Floating Cart Button -->
+  <button id="floatingCartBtn" class="floating-cart-btn" style="display:none;" onclick="openCartDrawer()">
+    <span>🛒 Ver Pedido</span>
+    <span id="floatCartCount" class="cart-count-badge" style="background:#fff; color:var(--primary-color);">0</span>
+    <span id="floatCartTotal" style="margin-left:auto; font-size:0.95rem;">$0.00</span>
+  </button>
+
+  <!-- ========================================================================
+       MODAL 1: CART & DELIVERY CHECKOUT (DRAWER)
+       ======================================================================== -->
+  <div id="cartOverlay" class="modal-overlay" onclick="closeCartDrawer()"></div>
+  <aside id="cartDrawer" class="cart-drawer">
+    <div class="drawer-header">
+      <h3><span>🛒</span> Tu Pedido</h3>
+      <button class="btn-close-modal" onclick="closeCartDrawer()">✕</button>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Empty state -->
+      <div id="cartDrawerEmptyState" style="text-align:center; padding:3rem 1rem; color:var(--text-muted);">
+        <div style="font-size:3.5rem; margin-bottom:1rem;">🍽️</div>
+        <h4 style="color:#fff; margin-bottom:0.5rem;">Tu carrito está vacío</h4>
+        <p style="font-size:0.85rem;">Explora el menú y agrega tus platos y combos favoritos.</p>
+        <button class="slide-btn" style="margin-top:1rem; font-size:0.85rem;" onclick="closeCartDrawer()">Explorar Menú</button>
+      </div>
+
+      <!-- Content when cart has items -->
+      <div id="cartDrawerContent" style="display:none;">
+        <div class="form-label" style="margin-bottom:0.6rem;">Platos seleccionados:</div>
+        <div id="cartDrawerItemsList" class="cart-items-list">
+          <!-- Injected via app.js -->
+        </div>
+
+        <!-- Order Type Setup -->
+        <div class="order-setup-box">
+          <h4>¿Cómo deseas recibir tu pedido?</h4>
+          <div class="order-type-tabs">
+            <button class="order-type-btn active" data-type="delivery" onclick="setOrderType('delivery')">
+              <span>🛵</span>
+              <span>Delivery</span>
+            </button>
+            <button class="order-type-btn" data-type="pickup" onclick="setOrderType('pickup')">
+              <span>🛍️</span>
+              <span>Para Llevar</span>
+            </button>
+            <button class="order-type-btn" data-type="dinein" onclick="setOrderType('dinein')">
+              <span>🍽️</span>
+              <span>En Local</span>
+            </button>
+          </div>
+
+          <!-- Customer Data Fields -->
+          <div class="form-group">
+            <label class="form-label">Tu Nombre y Apellido *</label>
+            <input type="text" id="orderCustomerName" class="form-control" placeholder="Ej: Carlos Mendoza" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Teléfono de Contacto (Opcional)</label>
+            <input type="tel" id="orderCustomerPhone" class="form-control" placeholder="Ej: 0412-1234567" />
+          </div>
+
+          <!-- Conditional Delivery Address -->
+          <div id="deliveryFieldsGroup">
+            <div class="form-group">
+              <label class="form-label">Dirección exacta de Entrega *</label>
+              <textarea id="orderDeliveryAddress" class="form-control" rows="2" placeholder="Urb., calle, edificio / casa, número de piso/apto"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Punto de Referencia</label>
+              <input type="text" id="orderDeliveryRef" class="form-control" placeholder="Ej: Al lado del supermercado, rejas blancas" />
+            </div>
+          </div>
+
+          <!-- Conditional Dine-in Table -->
+          <div id="dineinFieldsGroup" style="display:none;">
+            <div class="form-group">
+              <label class="form-label">Número de Mesa</label>
+              <input type="text" id="orderTableNumber" class="form-control" placeholder="Ej: Mesa 5" />
+            </div>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="form-group" style="margin-top:1rem;">
+            <label class="form-label">Método de Pago:</label>
+            <div class="payment-method-selector">
+              <label class="pay-radio-label checked" onclick="setPaymentMethod('pagomovil')">
+                <input type="radio" name="order_payment" value="pagomovil" checked />
+                <span>Pago Móvil (Bs.)</span>
+              </label>
+              <label class="pay-radio-label" onclick="setPaymentMethod('efectivo')">
+                <input type="radio" name="order_payment" value="efectivo" />
+                <span>Efectivo ($ USD)</span>
+              </label>
+              <label class="pay-radio-label" onclick="setPaymentMethod('zelle')">
+                <input type="radio" name="order_payment" value="zelle" />
+                <span>Zelle</span>
+              </label>
+              <label class="pay-radio-label" onclick="setPaymentMethod('puntoventa')">
+                <input type="radio" name="order_payment" value="puntoventa" />
+                <span>Punto de Venta</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- General Notes -->
+          <div class="form-group" style="margin-top:0.75rem;">
+            <label class="form-label">Observaciones adicionales:</label>
+            <input type="text" id="orderGeneralNotes" class="form-control" placeholder="Instrucciones para el repartidor o cocina..." />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer Footer Summary & WhatsApp Button -->
+    <div class="drawer-footer">
+      <div class="summary-line">
+        <span>Subtotal:</span>
+        <span id="cartSubtotalValue">$0.00</span>
+      </div>
+      <div class="summary-line" id="cartDeliveryRow">
+        <span>Costo de Delivery:</span>
+        <span id="cartDeliveryValue">$2.50</span>
+      </div>
+      <div class="summary-line total">
+        <div>
+          <div>TOTAL A PAGAR:</div>
+          <div class="total-bs" id="cartTotalBsValue">~ 0 Bs.</div>
+        </div>
+        <div style="font-size:1.4rem; color:var(--secondary-color);" id="cartTotalValue">$0.00</div>
+      </div>
+
+      <button class="btn-whatsapp-checkout" onclick="processWhatsAppOrder()">
+        <span>📲</span>
+        <span>Pedir por WhatsApp (+58 412-3714136)</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       MODAL 2: ITEM CUSTOMIZATION (Sizes, Flavors, Options)
+       ======================================================================== -->
+  <div id="itemModalOverlay" class="modal-overlay">
+    <div class="item-modal-card">
+      <button class="btn-close-modal" style="position:absolute; top:12px; right:12px; z-index:10;" onclick="closeItemModal()">✕</button>
+      <img id="modalItemImg" src="assets/img/menu-cover.jpg" alt="Plato" class="item-modal-img" />
+      <div class="item-modal-content">
+        <h3 id="modalItemName" style="margin:0 0 0.4rem 0; font-size:1.3rem; color:#fff;">Nombre del Plato</h3>
+        <p id="modalItemDesc" style="color:var(--text-muted); font-size:0.85rem; margin:0 0 1rem 0; line-height:1.4;">Descripción</p>
+
+        <!-- Dynamic choices injected via JS -->
+        <div id="modalItemOptionsWrap"></div>
+
+        <div style="margin-top:1.5rem; display:flex; justify-content:flex-end; gap:0.75rem;">
+          <button class="slide-btn" style="background:#374151;" onclick="closeItemModal()">Cancelar</button>
+          <button id="btnConfirmModalAdd" class="slide-btn" onclick="confirmModalAddToCart()">Agregar al Pedido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: ADMIN PANEL DASHBOARD
+       ======================================================================== -->
+  <div id="adminModalOverlay" class="modal-overlay">
+    <div class="admin-modal-card">
+      <div class="admin-header">
+        <h2><span>🔒</span> Panel Administrativo - Trigu's Bakery</h2>
+        <button class="btn-close-modal" onclick="closeAdminModal()">✕</button>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="admin-nav-tabs">
+        <button class="admin-tab-btn active" data-tab="summary" onclick="switchAdminTab('summary')">
+          <span>📊</span> Resumen de Pedidos del Día
+        </button>
+        <button class="admin-tab-btn" data-tab="dishes" onclick="switchAdminTab('dishes')">
+          <span>🍽️</span> Gestión de Platos & Precios
+        </button>
+        <button class="admin-tab-btn" data-tab="branding" onclick="switchAdminTab('branding')">
+          <span>🎨</span> Colores & Configuración
+        </button>
+        <button class="admin-tab-btn" data-tab="slider" onclick="switchAdminTab('slider')">
+          <span>📸</span> Carrusel de Fotos
+        </button>
+      </nav>
+
+      <!-- Active Content Pane -->
+      <div id="adminContentPane" class="admin-content-pane">
+        <!-- Rendered dynamically by js/admin.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Trigu's Bakery</h3>
+          <p style="max-width:380px; font-size:0.88rem; line-height:1.6;">
+            ¡Date un gusto! La mejor panadería, hamburguesería, pizzería y carnes al grill. Calidad de primera e ingredientes frescos garantizados.
+          </p>
+          <div style="margin-top:1rem; display:flex; gap:0.75rem;">
+            <a href="https://instagram.com/trigusbakery" target="_blank" style="background:#202029; color:#fff; padding:6px 14px; border-radius:6px; font-size:0.82rem; border:1px solid #333;">📸 @trigusbakery</a>
+            <a href="https://api.whatsapp.com/send?phone=584123714136" target="_blank" style="background:#25d366; color:#fff; padding:6px 14px; border-radius:6px; font-size:0.82rem; font-weight:700;">💬 Pedir por WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Menú Rápido</h4>
+          <ul>
+            <li><a href="#menu-section" onclick="selectCategory('hamburguesas')">🍔 Hamburguesas Gourmet</a></li>
+            <li><a href="#menu-section" onclick="selectCategory('carnes')">🥩 Carnes & Parrillas</a></li>
+            <li><a href="#menu-section" onclick="selectCategory('pizzas')">🍕 Pizzas Tradicionales</a></li>
+            <li><a href="#menu-section" onclick="selectCategory('pollo_asado')">🍗 Combos de Pollo</a></li>
+            <li><a href="#menu-section" onclick="selectCategory('bebidas')">🥤 Malteadas & Bebidas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Contacto & Pedidos</h4>
+          <ul>
+            <li>📍 <strong>Envíos:</strong> A toda la ciudad</li>
+            <li>📞 <strong>WhatsApp:</strong> <span id="footerWhatsappNumber">+58 412-3714136</span></li>
+            <li>🕒 <strong>Horario:</strong> Abierto todos los días</li>
+            <li>🛵 <strong>Servicio:</strong> Delivery & Pick-up</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Trigu's Bakery. Todos los derechos reservados. Diseñado para delivery rápido y eficiente.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/menu-data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
